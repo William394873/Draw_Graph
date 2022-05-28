@@ -1,0 +1,15 @@
+//memory
+graph_name = Memory
+axis_x = Time (in second)
+axis_y = Memory (in MiB)
+save_to = memory
+//thread
+graph_name = Thread
+axis_x = Time (in second)
+axis_y = Thread (over analysis time)
+save_to = thread
+//time
+graph_name = Time CDF
+axis_x = Time (in second)
+axis_y = Percentage of finished tasks (%)
+save_to = time
