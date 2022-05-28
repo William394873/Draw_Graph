@@ -4,12 +4,16 @@ import sys
 from os import walk
 
 def main():
+    """
+    argv[1]: path to data, argv[2]: 'line' or 'cdf'
+    :return:
+    """
     data_path = sys.argv[1]
     graph_option = sys.argv[2]
     graph_type = data_path.split('./data/')[1]
     config_dict = set_configuration(graph_type)
     file_path = get_file(data_path)
-    if graph_option == 'line chart':
+    if graph_option == 'line':
         draw_line_chart(file_path, data_path, config_dict)
     elif graph_option == 'cdf':
         draw_cdf_chart( file_path, data_path, config_dict )
@@ -20,9 +24,7 @@ def draw_cdf_chart(file_path, data_path, config_dict):
             lines = f.readlines()
         data_set = lines[0][1:-1].split(", ")
         axis_x = [float(i) for i in data_set]
-        for i in range(1, len(axis_x)):
-            axis_x[i] = axis_x[i] + axis_x[i-1]
-        print(axis_x)
+        axis_x.sort()
         axis_y = [i/(len(axis_x)-1) *100 for i in range(len(axis_x))]
         plt.plot(axis_x,axis_y,label=file.split('.')[0])
         plt.ylim( ymin=0 )
@@ -67,11 +69,13 @@ def set_configuration(graph_type):
         lines = f.readlines()
     flag = 0
     for config in lines:
-        if flag == '//' + graph_type:
+        if config.strip('\n') == '//' + graph_type:
             flag = 1
             continue
-        if config[:2] == '//':
+        elif config[:2] == '//':
             flag = 0
+            continue
+        elif flag == 0:
             continue
         key, value = config.strip("\n").split(" = ")
         config_dict[key] = value
