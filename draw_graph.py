@@ -19,19 +19,20 @@ def main():
         draw_cdf_chart( file_path, data_path, config_dict )
 
 def draw_cdf_chart(file_path, data_path, config_dict):
-    for file in file_path:
+    line_style = get_line_style()
+    for index, file in enumerate(file_path):
         with open(data_path + '/' + file) as f:
             lines = f.readlines()
         data_set = lines[0][1:-1].split(", ")
         axis_x = [float(i) for i in data_set]
         axis_x.sort()
         axis_y = [i/(len(axis_x)-1) *100 for i in range(len(axis_x))]
-        plt.plot(axis_x,axis_y,label=file.split('.')[0])
+        plt.plot(axis_x,axis_y,label=file.split('.')[0], dashes=line_style[index])
         plt.ylim( ymin=0 )
         plt.xlim( xmin=0)
-    plt.title(config_dict['graph_name'])
-    plt.xlabel(config_dict['axis_x'])
-    plt.ylabel(config_dict['axis_y'])
+    # plt.title(config_dict['graph_name'])
+    plt.xlabel(config_dict['axis_x'], fontsize=16)
+    plt.ylabel(config_dict['axis_y'], fontsize=16)
     plt.legend()
     plt.grid()
     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
@@ -39,7 +40,8 @@ def draw_cdf_chart(file_path, data_path, config_dict):
 
 
 def draw_line_chart(file_path, data_path, config_dict):
-    for file in file_path:
+    line_style = get_line_style()
+    for index, file in enumerate(file_path):
         with open(data_path + '/' + file) as f:
             lines = f.readlines()
         axis_x = []
@@ -49,10 +51,10 @@ def draw_line_chart(file_path, data_path, config_dict):
             datalist = value.split(" ")
             axis_y.append(float(datalist[1]))
             axis_x.append(float(datalist[2].strip("\n")) - based_value)
-        plt.plot( axis_x, axis_y, label=file.split('.')[0])
-    plt.title(config_dict['graph_name'])
-    plt.xlabel(config_dict['axis_x'])
-    plt.ylabel(config_dict['axis_y'])
+        plt.plot( axis_x, axis_y, label=file.split('.')[0], dashes=line_style[index])
+    # plt.title(config_dict['graph_name'])
+    plt.xlabel(config_dict['axis_x'], fontsize=16)
+    plt.ylabel(config_dict['axis_y'], fontsize=16)
     plt.legend()
     plt.grid()
     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
@@ -80,6 +82,13 @@ def set_configuration(graph_type):
         key, value = config.strip("\n").split(" = ")
         config_dict[key] = value
     return config_dict
+
+def get_line_style():
+    """
+    5 line style
+    :return:
+    """
+    return [(5,2),(2,2),(4,10),(3,3,2,2),(5,2,20,2)]
 
 def get_file(data_path):
     """
