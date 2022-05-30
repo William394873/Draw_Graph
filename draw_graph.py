@@ -66,7 +66,7 @@ def draw_line_chart(file_path, data_path, config_dict):
     # plt.title(config_dict['graph_name'])
     plt.xlabel(config_dict['axis_x'], fontsize=16)
     plt.ylabel(config_dict['axis_y'], fontsize=16)
-    plt.legend(loc=[0,1], ncol=2)
+    plt.legend(loc=config_dict['legend'])
     plt.grid()
     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
     plt.show()
@@ -99,7 +99,7 @@ def get_line_style():
     5 line style
     :return:
     """
-    return [(5,2),(2,2),(4,10),(3,3,2,2),(5,2,20,2)]
+    return [(5,2),(2,2),(4,6),(3,3,2,2),(5,2,20,2)]
 
 def get_file(data_path):
     """
