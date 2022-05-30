@@ -8,7 +8,7 @@ import random
 
 def main():
     """
-    argv[1]: path to data, argv[2]: 'line' or 'cdf'
+    argv[1]: path to data, argv[2]: 'line' or 'cdf' or 'venn'
     :return:
     """
     data_path = sys.argv[1]
