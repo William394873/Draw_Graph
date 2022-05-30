@@ -22,3 +22,9 @@ axis_x = Time (in second)
 axis_y = Percentage of covered code (%)
 save_to = code_cov
 legend = best
+//code_cov_slice
+graph_name = Time Slice picking with Code Coverage
+axis_x = Time (in second)
+axis_y = Percentage of covered code (%)
+save_to = code_cov_slice
+legend = best
