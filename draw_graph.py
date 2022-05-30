@@ -109,6 +109,7 @@ def get_file(data_path):
     """
     file_path = []
     for (dirpath, dirnames, filenames) in walk(data_path):
+        filenames = [i for i in filenames if not i.startswith(".")]
         file_path += filenames
     return file_path
 
