@@ -3,14 +3,17 @@ graph_name = Memory
 axis_x = Time (in second)
 axis_y = Memory (in MiB)
 save_to = memory
+legend = best
 //thread
 graph_name = Thread
 axis_x = Time (in second)
 axis_y = Thread (over analysis time)
 save_to = thread
+legend = best
 //time
 graph_name = Time CDF
 axis_x = Time (in second)
 axis_y = Percentage of finished tasks (%)
 save_to = time
+legend = best
 //
