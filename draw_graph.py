@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 from os import walk
-from matplotlib_venn import venn3, venn3_circles
+from matplotlib_venn import venn2, venn3, venn3_circles
 
 def main():
     """
@@ -24,9 +24,8 @@ def main():
 def draw_venn_chart(file_path, data_path, config_dict):
     set1 = set( ['A', 'B', 'C'] )
     set2 = set( ['A', 'B', 'D'] )
-    set3 = set( ['A', 'E', 'F'] )
 
-    venn3( [set1, set2, set3], ('Group1', 'Group2', 'Group3') )
+    venn2( [set1, set2], ('Group1', 'Group2') )
 
     plt.show()
 
