@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import sys
 from os import walk
 from matplotlib_venn import venn2, venn3, venn3_circles
+import random
+
 
 def main():
     """
@@ -30,7 +32,7 @@ def draw_venn_chart(file_path, data_path, config_dict):
     plt.show()
 
 def draw_cdf_chart(file_path, data_path, config_dict):
-    line_style = get_line_style()
+    line_style = get_line_style(len(file_path))
     for index, file in enumerate(file_path):
         with open(data_path + '/' + file) as f:
             lines = f.readlines()
@@ -51,7 +53,7 @@ def draw_cdf_chart(file_path, data_path, config_dict):
 
 
 def draw_line_chart(file_path, data_path, config_dict):
-    line_style = get_line_style()
+    line_style = get_line_style(len(file_path))
     for index, file in enumerate(file_path):
         with open(data_path + '/' + file) as f:
             lines = f.readlines()
@@ -94,12 +96,21 @@ def set_configuration(graph_type):
         config_dict[key] = value
     return config_dict
 
-def get_line_style():
+def get_line_style(line_num):
     """
-    5 line style
+    line_num line style
     :return:
     """
-    return [(5,2),(2,2),(4,6),(3,3,2,2),(5,2,20,2)]
+    # line1.set_dashes([2, 2, 10, 2])  # 2pt line, 2pt break, 10pt line, 2pt break
+
+    style = []
+    for i in range(line_num):
+        tmp = []
+        for j in range(4):
+            tmp.append(random.randint(1,10))
+        style.append(tmp)
+    return style
+    # return [(5,2),(2,2),(4,6),(3,3,2,2),(5,2,20,2)]
 
 def get_file(data_path):
     """
