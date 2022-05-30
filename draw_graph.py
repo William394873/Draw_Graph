@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 from os import walk
+from matplotlib_venn import venn3, venn3_circles
 
 def main():
     """
@@ -17,6 +18,17 @@ def main():
         draw_line_chart(file_path, data_path, config_dict)
     elif graph_option == 'cdf':
         draw_cdf_chart( file_path, data_path, config_dict )
+    elif graph_option == 'venn':
+        draw_venn_chart(file_path, data_path, config_dict)
+
+def draw_venn_chart(file_path, data_path, config_dict):
+    set1 = set( ['A', 'B', 'C'] )
+    set2 = set( ['A', 'B', 'D'] )
+    set3 = set( ['A', 'E', 'F'] )
+
+    venn3( [set1, set2, set3], ('Group1', 'Group2', 'Group3') )
+
+    plt.show()
 
 def draw_cdf_chart(file_path, data_path, config_dict):
     line_style = get_line_style()
