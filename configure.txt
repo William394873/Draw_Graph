@@ -7,7 +7,7 @@ legend = best
 //thread
 graph_name = Thread
 axis_x = Time (in second)
-axis_y = Thread (over analysis time)
+axis_y = # of Threads
 save_to = thread
 legend = best
 //time
@@ -28,3 +28,9 @@ axis_x = Time (in second)
 axis_y = Percentage of covered code (%)
 save_to = code_cov_slice
 legend = best
+//venn
+group1 = Group1
+group2 = Group2
+save_to_0 = venn
+save_to_1 = venn2
+//

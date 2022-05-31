@@ -24,4 +24,6 @@ axis_y = "name of y axis"
 
 save_to = "name of output file"
 
+    for Venn graph, save_to can be save_to_0, save_to_1, ... depending on the number of data in the folder
+
 legend = "location of legend, [best or outside]"
