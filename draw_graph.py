@@ -28,7 +28,7 @@ def draw_venn_chart(file_path, data_path, config_dict):
     set2 = set( ['A', 'B', 'D'] )
 
     venn2( [set1, set2], ('Group1', 'Group2') )
-
+    plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
     plt.show()
 
 def draw_cdf_chart(file_path, data_path, config_dict):
