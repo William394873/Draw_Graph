@@ -28,9 +28,8 @@ axis_x = Time (in second)
 axis_y = Percentage of covered code (%)
 save_to = code_cov_slice
 legend = best
-//venn
-group1 = Group1
-group2 = Group2
-save_to_0 = venn
-save_to_1 = venn2
+//venn_large
+save_to = venn_large
+//venn_small
+save_to = venn_small
 //

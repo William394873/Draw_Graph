@@ -24,14 +24,21 @@ def main():
         draw_venn_chart(file_path, data_path, config_dict)
 
 def draw_venn_chart(file_path, data_path, config_dict):
-
+    data_set = []
+    group_name = set()
     for index, file in enumerate( file_path ):
         with open(data_path + '/' + file) as f:
             lines = f.readlines()
-        data = [int(i.strip("\n")) for i in lines]
-        venn2( data, (config_dict['group1'], config_dict['group2']) )
-        plt.savefig( "./result/" + config_dict['save_to_' + str(index)] + ".eps", format='eps' )
-        plt.show()
+        data = [i.strip("\n") for i in lines]
+        data_set.append(set(data))
+        group_name.add(file.split(".")[0])
+    out = venn2(data_set,group_name)
+    for text in out.set_labels:
+        text.set_fontsize( 20 )
+    for text in out.subset_labels:
+        text.set_fontsize( 16 )
+    plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
+    plt.show()
 
 
 def draw_cdf_chart(file_path, data_path, config_dict):
