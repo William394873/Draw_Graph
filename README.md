@@ -12,7 +12,7 @@
 
 ## To get Venn:
 
-(1) python3 draw_graph.py ./data/venn venn
+(1) python3 draw_graph.py ./data/venn_large venn
 
 ## Configure:
 
