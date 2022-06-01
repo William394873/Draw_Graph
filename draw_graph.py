@@ -24,26 +24,20 @@ def main():
         draw_venn_chart(file_path, data_path, config_dict)
 
 def draw_venn_chart(file_path, data_path, config_dict):
-<<<<<<< HEAD
-    set1 = set( ['A', 'B', 'C'] )
-    set2 = set( ['A', 'B', 'D'] )
-
-    venn2( [set1, set2], ('Group1', 'Group2') )
-=======
     data_set = []
-    group_name = set()
+    group_name = []
     for index, file in enumerate( file_path ):
         with open(data_path + '/' + file) as f:
             lines = f.readlines()
         data = [i.strip("\n") for i in lines]
         data_set.append(set(data))
-        group_name.add(file.split(".")[0])
+        group_name.append(file.split(".")[0])
+        print(len(set(data)), file.split(".")[0])
     out = venn2(data_set,group_name)
     for text in out.set_labels:
         text.set_fontsize( 20 )
     for text in out.subset_labels:
         text.set_fontsize( 16 )
->>>>>>> 4ecbd583cc7f59430dd64f346325a8257cb206ce
     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
     plt.show()
 
