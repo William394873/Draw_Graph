@@ -32,3 +32,9 @@ legend = best
 save_to = venn_large
 //venn_small
 save_to = venn_small
+//code_cov_imp
+graph_name = code_cov_imp CDF
+axis_x = code coverage (in second)
+axis_y = Percentage of finished tasks (%)
+save_to = code_cov_imp
+legend = best
