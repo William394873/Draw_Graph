@@ -38,9 +38,11 @@ def draw_venn_chart(file_path, data_path, config_dict):
     elif len(data_set)==3:
         out = venn3(data_set,group_name)
     for text in out.set_labels:
-        text.set_fontsize( 20 )
+        if text:
+            text.set_fontsize( 20 )
     for text in out.subset_labels:
-        text.set_fontsize( 16 )
+        if text:
+            text.set_fontsize( 16 )
     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
     plt.show()
 

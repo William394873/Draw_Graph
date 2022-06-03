@@ -29,8 +29,10 @@ save_to = code_cov_slice
 legend = best
 //venn_large
 save_to = venn_large
-//venn_small
-save_to = venn_small
+//venn_empoweb
+save_to = venn_empoweb
+//venn_doublex
+save_to = venn_doublex
 //code_cov_imp
 graph_name = code_cov_imp CDF
 axis_x = code coverage (in second)
