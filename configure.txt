@@ -13,9 +13,8 @@ legend = best
 //time
 graph_name = Time CDF
 axis_x = Time (in second)
-axis_y = Percentage of finished tasks (%)
+axis_y = Percentage of finished extensions (%)
 save_to = time
-legend = best
 //code_cov
 graph_name = Code Coverage with Time
 axis_x = Time (in second)

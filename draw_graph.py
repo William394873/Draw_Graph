@@ -33,7 +33,10 @@ def draw_venn_chart(file_path, data_path, config_dict):
         data_set.append(set(data))
         group_name.append(file.split(".")[0])
         print(len(set(data)), file.split(".")[0])
-    out = venn2(data_set,group_name)
+    if len(data_set)==2:
+        out = venn2(data_set,group_name)
+    elif len(data_set)==3:
+        out = venn3(data_set,group_name)
     for text in out.set_labels:
         text.set_fontsize( 20 )
     for text in out.subset_labels:
@@ -57,7 +60,7 @@ def draw_cdf_chart(file_path, data_path, config_dict):
     # plt.title(config_dict['graph_name'])
     plt.xlabel(config_dict['axis_x'], fontsize=16)
     plt.ylabel(config_dict['axis_y'], fontsize=16)
-    plt.legend(loc=config_dict['legend'])
+    # plt.legend(loc=config_dict['legend'])
     plt.grid()
     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
     plt.show()
