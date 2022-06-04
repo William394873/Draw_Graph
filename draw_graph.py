@@ -55,7 +55,7 @@ def draw_cdf_chart(file_path, data_path, config_dict):
         data_set = lines[0][1:-1].split(", ")
         axis_x = [float(i) for i in data_set]
         axis_x.sort()
-        axis_y = [i/(len(axis_x)-1) *100 for i in range(len(axis_x))]
+        axis_y = [i/500*100 for i in range(len(axis_x))]
         plt.plot(axis_x,axis_y,label=file.split('.')[0], dashes=line_style[index])
         plt.ylim( ymin=0 )
         plt.xlim( xmin=0)
