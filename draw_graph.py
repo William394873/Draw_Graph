@@ -74,6 +74,7 @@ def draw_cdf_chart(file_path, data_path, config_dict):
 
 def draw_line_chart(file_path, data_path, config_dict, graph_type):
     line_style = get_line_style(len(file_path))
+    marker_style = get_marker(len(file_path))
     y_list = []
     x_list = []
     for index, file in enumerate(file_path):
@@ -88,7 +89,7 @@ def draw_line_chart(file_path, data_path, config_dict, graph_type):
             axis_x.append(float(datalist[2].strip("\n")) - based_value)
         y_list.append(axis_y)
         x_list.append(axis_x)
-        plt.plot( axis_x, axis_y, label=file.split('.')[0], dashes=line_style[index])
+        plt.plot( axis_x, axis_y, label=file.split('.')[0], dashes=line_style[index], marker = marker_style[index] if graph_type == 'code_cov' else None)
     if graph_type == 'code_cov':
         x1 = x_list[0]
         x2 = x_list[1]
@@ -130,6 +131,14 @@ def set_configuration(graph_type):
         key, value = config.strip("\n").split(" = ")
         config_dict[key] = value
     return config_dict
+
+def get_marker(line_num):
+    """
+    get marker for each line
+    :param line_num:
+    :return:
+    """
+    return ['.', 'x', 'o', 'v', '^', '<', '>']
 
 def get_line_style(line_num):
     """
