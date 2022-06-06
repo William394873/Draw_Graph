@@ -80,7 +80,7 @@ def draw_line_chart(file_path, data_path, config_dict, graph_type):
     for index, file in enumerate(file_path):
         with open(data_path + '/' + file) as f:
             lines = f.readlines()
-        file_cat = file.split('_')[0]
+        file_cat = file.split('_')[1]
         push_to_dict(file_cat, file, file_dict)
         axis_x = []
         axis_y = []
@@ -102,7 +102,7 @@ def draw_line_chart(file_path, data_path, config_dict, graph_type):
             y1fill = np.interp( xfill, x1, y1 )
             y2fill = np.interp( xfill, x2, y2 )
             plt.fill_between( xfill, y1fill, y2fill, where=y1fill < y2fill, interpolate=True, color='dodgerblue', alpha=0.2, hatch="/",edgecolor='red' )
-            plt.fill_between( xfill, y1fill, y2fill, where=y1fill > y2fill, interpolate=True, color='crimson', alpha=0.2, hatch="/",edgecolor='red' )
+            plt.fill_between( xfill, y1fill, y2fill, where=y1fill > y2fill, interpolate=True, color='dodgerblue', alpha=0.2, hatch="/",edgecolor='red' )
 
     # plt.title(config_dict['graph_name'])
     # plt.xlim( xmin=0)
