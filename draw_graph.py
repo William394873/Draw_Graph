@@ -91,7 +91,7 @@ def draw_line_chart(file_path, data_path, config_dict, graph_type):
             axis_x.append(float(datalist[2].strip("\n")) - based_value)
         push_to_dict(file, axis_x, data_dict)
         push_to_dict(file, axis_y, data_dict)
-        plt.plot( axis_x, axis_y, label=file.split('.')[0], dashes=line_style[index], marker = marker_style[index] if graph_type == 'code_cov' else None)
+        plt.plot( axis_x, axis_y, label=file.split('.')[0], dashes=line_style[index], marker = marker_style[index] if graph_type == 'code_cov' else None, markevery=10)
     if graph_type == 'code_cov':
         for value in file_dict.values():
             x1 = data_dict[value[0]][0]

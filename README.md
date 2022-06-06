@@ -25,3 +25,7 @@ axis_y = "name of y axis"
 save_to = "name of output file"
 
 legend = "location of legend, [best or outside]"
+
+## Misc
+
+To change marker frequency, change "markevery" in plt.
