@@ -74,6 +74,7 @@ def draw_cdf_chart(file_path, data_path, config_dict):
 
 def draw_line_chart(file_path, data_path, config_dict, graph_type):
     line_style = get_line_style(len(file_path))
+    marker_style = get_marker(len(file_path))
     y_list = []
     x_list = []
     for index, file in enumerate(file_path):
@@ -88,7 +89,7 @@ def draw_line_chart(file_path, data_path, config_dict, graph_type):
             axis_x.append(float(datalist[2].strip("\n")) - based_value)
         y_list.append(axis_y)
         x_list.append(axis_x)
-        plt.plot( axis_x, axis_y, label=file.split('.')[0], dashes=line_style[index])
+        plt.plot( axis_x, axis_y, label=file.split('.')[0], dashes=line_style[index], marker = marker_style[index] if graph_type == 'code_cov' else None)
     if graph_type == 'code_cov':
         x1 = x_list[0]
         x2 = x_list[1]
@@ -99,6 +100,21 @@ def draw_line_chart(file_path, data_path, config_dict, graph_type):
         y2fill = np.interp( xfill, x2, y2 )
         plt.fill_between( xfill, y1fill, y2fill, where=y1fill < y2fill, interpolate=True, color='dodgerblue', alpha=0.2, hatch="/",edgecolor='red' )
         plt.fill_between( xfill, y1fill, y2fill, where=y1fill > y2fill, interpolate=True, color='crimson', alpha=0.2, hatch="/",edgecolor='red' )
+
+
+        y3 = [i+100 for i in y1]
+        y4 = [i+200 for i in y2]
+        plt.plot( x1, y3, label=file.split( '.' )[0], dashes=line_style[index],
+                  marker=marker_style[index] if graph_type == 'code_cov' else None )
+        plt.plot( x2, y4, label=file.split( '.' )[0], dashes=line_style[index],
+                  marker=marker_style[index] if graph_type == 'code_cov' else None )
+        y1fill = np.interp( xfill, x1, y3 )
+        y2fill = np.interp( xfill, x2, y4 )
+        plt.fill_between( xfill, y1fill, y2fill, where=y1fill < y2fill, interpolate=True, color='dodgerblue', alpha=0.2,
+                          hatch="/", edgecolor='red' )
+        plt.fill_between( xfill, y1fill, y2fill, where=y1fill > y2fill, interpolate=True, color='crimson', alpha=0.2,
+                          hatch="/", edgecolor='red' )
+
     # plt.title(config_dict['graph_name'])
     # plt.xlim( xmin=0)
     plt.xlabel(config_dict['axis_x'], fontsize=16)
@@ -130,6 +146,14 @@ def set_configuration(graph_type):
         key, value = config.strip("\n").split(" = ")
         config_dict[key] = value
     return config_dict
+
+def get_marker(line_num):
+    """
+    get marker for each line
+    :param line_num:
+    :return:
+    """
+    return ['.', 'x', 'o', 'v', '^', '<', '>']
 
 def get_line_style(line_num):
     """

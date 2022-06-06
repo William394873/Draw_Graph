@@ -5,8 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/draw_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw_graph.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result/code_cov.eps" beforeDir="false" afterPath="$PROJECT_DIR$/result/code_cov.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/memory.eps" beforeDir="false" afterPath="$PROJECT_DIR$/result/memory.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/venn_large.eps" beforeDir="false" afterPath="$PROJECT_DIR$/result/venn_large.eps" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Draw_Graph$draw_graph.coverage" NAME="draw_graph Coverage Results" MODIFIED="1654494434436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Draw_Graph$draw_graph.coverage" NAME="draw_graph Coverage Results" MODIFIED="1654497116358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf>
@@ -31,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/draw_graph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="100" column="127" selection-start-line="100" selection-start-column="127" selection-end-line="100" selection-end-column="127" />
+            <state relative-caret-position="290">
+              <caret line="90" column="4" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -182,15 +180,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1653720672817</updated>
-      <workItem from="1653720676409" duration="19009000" />
+      <workItem from="1653720676409" duration="20747000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19009000" />
+    <option name="totallyTimeSpent" value="20747000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1680" height="1025" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
@@ -203,12 +202,12 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32901832" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32901832" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.399137" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="SciView" visible="true" weight="0.24603175" />
+      <window_info active="true" anchor="right" id="SciView" visible="true" weight="0.33028084" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -282,8 +281,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/draw_graph.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="100" column="127" selection-start-line="100" selection-start-column="127" selection-end-line="100" selection-end-column="127" />
+        <state relative-caret-position="290">
+          <caret line="90" column="4" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
