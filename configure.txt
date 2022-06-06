@@ -39,3 +39,9 @@ axis_x = code coverage (in second)
 axis_y = Percentage of finished tasks (%)
 save_to = code_cov_imp
 legend = best
+//code_cov_policy
+graph_name = Code Coverage with Time
+axis_x = Time (in second)
+axis_y = Percentage of covered code (%)
+save_to = code_cov
+legend = best
