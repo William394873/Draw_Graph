@@ -75,11 +75,13 @@ def draw_cdf_chart(file_path, data_path, config_dict):
 def draw_line_chart(file_path, data_path, config_dict, graph_type):
     line_style = get_line_style(len(file_path))
     marker_style = get_marker(len(file_path))
-    y_list = []
-    x_list = []
+    file_dict = {}
+    data_dict = {}
     for index, file in enumerate(file_path):
         with open(data_path + '/' + file) as f:
             lines = f.readlines()
+        file_cat = file.split('_')[0]
+        push_to_dict(file_cat, file, file_dict)
         axis_x = []
         axis_y = []
         based_value = float(lines[1].split(" ")[2].strip("\n"))
@@ -87,33 +89,20 @@ def draw_line_chart(file_path, data_path, config_dict, graph_type):
             datalist = value.split(" ")
             axis_y.append(float(datalist[1]))
             axis_x.append(float(datalist[2].strip("\n")) - based_value)
-        y_list.append(axis_y)
-        x_list.append(axis_x)
+        push_to_dict(file, axis_x, data_dict)
+        push_to_dict(file, axis_y, data_dict)
         plt.plot( axis_x, axis_y, label=file.split('.')[0], dashes=line_style[index], marker = marker_style[index] if graph_type == 'code_cov' else None)
     if graph_type == 'code_cov':
-        x1 = x_list[0]
-        x2 = x_list[1]
-        y1 = y_list[0]
-        y2 = y_list[1]
-        xfill = np.sort( np.concatenate( [x1, x2] ) )
-        y1fill = np.interp( xfill, x1, y1 )
-        y2fill = np.interp( xfill, x2, y2 )
-        plt.fill_between( xfill, y1fill, y2fill, where=y1fill < y2fill, interpolate=True, color='dodgerblue', alpha=0.2, hatch="/",edgecolor='red' )
-        plt.fill_between( xfill, y1fill, y2fill, where=y1fill > y2fill, interpolate=True, color='crimson', alpha=0.2, hatch="/",edgecolor='red' )
-
-
-        y3 = [i+100 for i in y1]
-        y4 = [i+200 for i in y2]
-        plt.plot( x1, y3, label=file.split( '.' )[0], dashes=line_style[index],
-                  marker=marker_style[index] if graph_type == 'code_cov' else None )
-        plt.plot( x2, y4, label=file.split( '.' )[0], dashes=line_style[index],
-                  marker=marker_style[index] if graph_type == 'code_cov' else None )
-        y1fill = np.interp( xfill, x1, y3 )
-        y2fill = np.interp( xfill, x2, y4 )
-        plt.fill_between( xfill, y1fill, y2fill, where=y1fill < y2fill, interpolate=True, color='dodgerblue', alpha=0.2,
-                          hatch="/", edgecolor='red' )
-        plt.fill_between( xfill, y1fill, y2fill, where=y1fill > y2fill, interpolate=True, color='crimson', alpha=0.2,
-                          hatch="/", edgecolor='red' )
+        for value in file_dict.values():
+            x1 = data_dict[value[0]][0]
+            x2 = data_dict[value[1]][0]
+            y1 = data_dict[value[0]][1]
+            y2 = data_dict[value[1]][1]
+            xfill = np.sort( np.concatenate( [x1, x2] ) )
+            y1fill = np.interp( xfill, x1, y1 )
+            y2fill = np.interp( xfill, x2, y2 )
+            plt.fill_between( xfill, y1fill, y2fill, where=y1fill < y2fill, interpolate=True, color='dodgerblue', alpha=0.2, hatch="/",edgecolor='red' )
+            plt.fill_between( xfill, y1fill, y2fill, where=y1fill > y2fill, interpolate=True, color='crimson', alpha=0.2, hatch="/",edgecolor='red' )
 
     # plt.title(config_dict['graph_name'])
     # plt.xlim( xmin=0)
@@ -170,6 +159,18 @@ def get_line_style(line_num):
         style.append(tmp)
     return style
     # return [(5,2),(2,2),(4,6),(3,3,2,2),(5,2,20,2)]
+
+def push_to_dict(key, value, dict):
+    """
+    push value to dict
+    :param value:
+    :param dict:
+    :return:
+    """
+    if key in dict.keys():
+        dict[key].append(value)
+    else:
+        dict[key] = [value]
 
 def get_file(data_path):
     """
