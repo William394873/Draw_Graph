@@ -57,12 +57,12 @@ def draw_cdf_chart(file_path, data_path, config_dict):
         data_set = lines[0][1:-1].split(", ")
         axis_x = [float(i) for i in data_set]
         axis_x.sort()
-        axis_y = [(i+1)/(len(axis_x)+34)*100 for i in range(len(axis_x))]
-        axis_x.append(600)
-        axis_y.append(axis_y[-1])
+        axis_y = [(i+1)/len(axis_x)*100 for i in range(len(axis_x))]
+        # axis_x.append(600)
+        # axis_y.append(axis_y[-1])
         plt.plot(axis_x,axis_y,label=file.split('.')[0], dashes=line_style[index])
         plt.ylim( ymin=0, ymax = 100 )
-        plt.xlim( xmin=0, xmax = 600)
+        plt.xlim( xmin=0)
     # plt.title(config_dict['graph_name'])
     plt.xlabel(config_dict['axis_x'], fontsize=16)
     plt.ylabel(config_dict['axis_y'], fontsize=16)
@@ -70,6 +70,30 @@ def draw_cdf_chart(file_path, data_path, config_dict):
     plt.grid()
     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
     plt.show()
+
+# def draw_cdf_chart(file_path, data_path, config_dict):
+#     line_style = get_line_style(len(file_path))
+#     if len(file_path)==1:
+#         line_style = [(2,2)]
+#     for index, file in enumerate(file_path):
+#         with open(data_path + '/' + file) as f:
+#             lines = f.readlines()
+#         data_set = lines[0][1:-1].split(", ")
+#         axis_x = [float(i) for i in data_set]
+#         axis_x.sort()
+#         axis_y = [(i+1)/(len(axis_x)+34)*100 for i in range(len(axis_x))]
+#         axis_x.append(600)
+#         axis_y.append(axis_y[-1])
+#         plt.plot(axis_x,axis_y,label=file.split('.')[0], dashes=line_style[index])
+#         plt.ylim( ymin=0, ymax = 100 )
+#         plt.xlim( xmin=0, xmax = 600)
+#     # plt.title(config_dict['graph_name'])
+#     plt.xlabel(config_dict['axis_x'], fontsize=16)
+#     plt.ylabel(config_dict['axis_y'], fontsize=16)
+#     # plt.legend(loc=config_dict['legend'])
+#     plt.grid()
+#     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
+#     plt.show()
 
 
 def draw_line_chart(file_path, data_path, config_dict, graph_type):

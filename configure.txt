@@ -35,8 +35,8 @@ save_to = venn_empoweb
 save_to = venn_doublex
 //code_cov_imp
 graph_name = code_cov_imp CDF
-axis_x = code coverage (in second)
-axis_y = Percentage of finished tasks (%)
+axis_x = code coverage improvement (in %)
+axis_y = Percentage of extensions (%)
 save_to = code_cov_imp
 legend = best
 //code_cov_policy
