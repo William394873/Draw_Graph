@@ -17,7 +17,7 @@ def main():
     config_dict = set_configuration(graph_type)
     file_path = get_file(data_path)
     if graph_option == 'line':
-        draw_line_chart(file_path, data_path, config_dict)
+        draw_line_chart(file_path, data_path, config_dict, graph_type)
     elif graph_option == 'cdf':
         draw_cdf_chart( file_path, data_path, config_dict )
     elif graph_option == 'venn':
@@ -72,8 +72,10 @@ def draw_cdf_chart(file_path, data_path, config_dict):
     plt.show()
 
 
-def draw_line_chart(file_path, data_path, config_dict):
+def draw_line_chart(file_path, data_path, config_dict, graph_type):
     line_style = get_line_style(len(file_path))
+    y_list = []
+    x_list = []
     for index, file in enumerate(file_path):
         with open(data_path + '/' + file) as f:
             lines = f.readlines()
@@ -84,7 +86,19 @@ def draw_line_chart(file_path, data_path, config_dict):
             datalist = value.split(" ")
             axis_y.append(float(datalist[1]))
             axis_x.append(float(datalist[2].strip("\n")) - based_value)
+        y_list.append(axis_y)
+        x_list.append(axis_x)
         plt.plot( axis_x, axis_y, label=file.split('.')[0], dashes=line_style[index])
+    if graph_type == 'code_cov':
+        x1 = x_list[0]
+        x2 = x_list[1]
+        y1 = y_list[0]
+        y2 = y_list[1]
+        xfill = np.sort( np.concatenate( [x1, x2] ) )
+        y1fill = np.interp( xfill, x1, y1 )
+        y2fill = np.interp( xfill, x2, y2 )
+        plt.fill_between( xfill, y1fill, y2fill, where=y1fill < y2fill, interpolate=True, color='dodgerblue', alpha=0.2, hatch="/",edgecolor='red' )
+        plt.fill_between( xfill, y1fill, y2fill, where=y1fill > y2fill, interpolate=True, color='crimson', alpha=0.2, hatch="/",edgecolor='red' )
     # plt.title(config_dict['graph_name'])
     # plt.xlim( xmin=0)
     plt.xlabel(config_dict['axis_x'], fontsize=16)
