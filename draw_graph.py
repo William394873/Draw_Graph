@@ -100,6 +100,21 @@ def draw_line_chart(file_path, data_path, config_dict, graph_type):
         y2fill = np.interp( xfill, x2, y2 )
         plt.fill_between( xfill, y1fill, y2fill, where=y1fill < y2fill, interpolate=True, color='dodgerblue', alpha=0.2, hatch="/",edgecolor='red' )
         plt.fill_between( xfill, y1fill, y2fill, where=y1fill > y2fill, interpolate=True, color='crimson', alpha=0.2, hatch="/",edgecolor='red' )
+
+
+        y3 = [i+100 for i in y1]
+        y4 = [i+200 for i in y2]
+        plt.plot( x1, y3, label=file.split( '.' )[0], dashes=line_style[index],
+                  marker=marker_style[index] if graph_type == 'code_cov' else None )
+        plt.plot( x2, y4, label=file.split( '.' )[0], dashes=line_style[index],
+                  marker=marker_style[index] if graph_type == 'code_cov' else None )
+        y1fill = np.interp( xfill, x1, y3 )
+        y2fill = np.interp( xfill, x2, y4 )
+        plt.fill_between( xfill, y1fill, y2fill, where=y1fill < y2fill, interpolate=True, color='dodgerblue', alpha=0.2,
+                          hatch="/", edgecolor='red' )
+        plt.fill_between( xfill, y1fill, y2fill, where=y1fill > y2fill, interpolate=True, color='crimson', alpha=0.2,
+                          hatch="/", edgecolor='red' )
+
     # plt.title(config_dict['graph_name'])
     # plt.xlim( xmin=0)
     plt.xlabel(config_dict['axis_x'], fontsize=16)

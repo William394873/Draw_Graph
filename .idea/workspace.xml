@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15026f1c-8a21-4b25-ab0d-b449a0868e04" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/draw_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw_graph.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result/code_cov.eps" beforeDir="false" afterPath="$PROJECT_DIR$/result/code_cov.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/memory.eps" beforeDir="false" afterPath="$PROJECT_DIR$/result/memory.eps" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Draw_Graph$draw_graph.coverage" NAME="draw_graph Coverage Results" MODIFIED="1654495581034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Draw_Graph$draw_graph.coverage" NAME="draw_graph Coverage Results" MODIFIED="1654497116358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf>
@@ -29,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/draw_graph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="91" column="152" selection-start-line="91" selection-start-column="152" selection-end-line="91" selection-end-column="152" />
+            <state relative-caret-position="290">
+              <caret line="90" column="4" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -161,7 +161,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/draw_graph.py" />
-      <option name="PARAMETERS" value="./data/memory line" />
+      <option name="PARAMETERS" value="./data/code_cov line" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -180,15 +180,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1653720672817</updated>
-      <workItem from="1653720676409" duration="19982000" />
+      <workItem from="1653720676409" duration="20747000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19982000" />
+    <option name="totallyTimeSpent" value="20747000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1680" height="1025" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
@@ -280,8 +281,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/draw_graph.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="91" column="152" selection-start-line="91" selection-start-column="152" selection-end-line="91" selection-end-column="152" />
+        <state relative-caret-position="290">
+          <caret line="90" column="4" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
