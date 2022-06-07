@@ -92,6 +92,7 @@ def draw_bar_chart(file_path, data_path, config_dict):
             y2.append(data['policy_2'][item])
             y3.append(data['policy_3'][item])
         barWidth = 0.25
+        plt.figure( figsize=(12.8, 4.8) )
         br2 = np.arange( len(x_axis) )
         br1 = [x - barWidth for x in br2]
         br3 = [x + barWidth for x in br2]
