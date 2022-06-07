@@ -26,6 +26,8 @@ def main():
         draw_venn_chart(file_path, data_path, config_dict)
     elif graph_option == 'bar':
         draw_bar_chart(file_path, data_path, config_dict)
+    elif graph_option == 'gamma':
+        read_gamma('./data/gamma/data.txt')
 
 def draw_venn_chart(file_path, data_path, config_dict):
     data_set = []
@@ -288,6 +290,28 @@ def read_json(data_path):
     data = json.load( f )
     f.close()
     return data
+
+def read_gamma(data_path):
+    """
+    read gamma data
+    :param data_path:
+    :return:
+    """
+    with open(data_path) as f:
+        lines = f.readlines()
+    print(lines)
+    alpha = []
+    beta = []
+    gamma = []
+    value = []
+    for line in lines:
+        temp = line.split(' ')
+        value.append(float(temp[1].strip('\n')))
+        param = temp[0].split('_')
+        alpha.append(float(param[0]))
+        beta.append(float(param[1]))
+        gamma.append(float(param[2]))
+    return alpha,beta,gamma,value
 
 
 if __name__ == "__main__":
