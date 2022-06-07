@@ -14,6 +14,10 @@
 
 (1) python3 draw_graph.py ./data/venn_large venn
 
+## To get Bar chart:
+
+(1) python3 draw_graph.py ./data/code_cov_bar bar
+
 ## Configure:
 
 graph_name = "name of graph"

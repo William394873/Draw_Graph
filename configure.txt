@@ -51,3 +51,10 @@ axis_x = Extension ID
 axis_y = Code Coverage(%)
 save_to = code_cov_contrast
 legend = best
+//code_cov_bar
+graph_name = Code Coverage
+axis_x = Extension ID
+axis_y = Code Coverage(%)
+save_to = code_cov_bar
+legend = best
+//
