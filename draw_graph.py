@@ -80,33 +80,35 @@ def draw_cdf_chart(file_path, data_path, config_dict):
 
 
 def draw_bar_chart(file_path, data_path, config_dict):
+    plt.style.use( 'seaborn-notebook' )
+    fill_list = get_fill()
     for index, file in enumerate(file_path):
         data = read_json(data_path + '/' + file)
         x_axis = set()
+        y_axis = []
         for key in data.keys():
             x_axis.update(data[key].keys())
-        x_axis = list(x_axis)
+            y_axis.append(key)
+        y_axis = sorted(y_axis)
+        x_axis = sorted(list(x_axis))
+        y_axis_total = []
         y1, y2, y3 = [], [], []
-        for item in x_axis:
-            y1.append(data['policy_1'][item])
-            y2.append(data['policy_2'][item])
-            y3.append(data['policy_3'][item])
-        barWidth = 0.25
+        for item_y  in y_axis:
+            temp = []
+            for item_x in x_axis:
+                temp.append(data[item_y][item_x])
+            y_axis_total.append(temp)
+        barWidth = 1/(len(y_axis_total)+1)
         plt.figure( figsize=(12.8, 4.8) )
-        br2 = np.arange( len(x_axis) )
-        br1 = [x - barWidth for x in br2]
-        br3 = [x + barWidth for x in br2]
-        # Make the plot
-        plt.bar( br1, y1, color='r', width=barWidth,
-                 edgecolor='grey', label='policy_1' )
-        plt.bar( br2, y2, color='g', width=barWidth,
-                 edgecolor='grey', label='policy_2' )
-        plt.bar( br3, y3, color='b', width=barWidth,
-                 edgecolor='grey', label='policy_3' )
-        # plt.xticks( [r for r in range( len( x_axis ) )],
-        #             x_axis, rotation = 90)
+        br = []
+        br_base = np.arange( len(x_axis) )
+        for item in range(len(y_axis_total)):
+            br.append([x + item * barWidth for x in br_base])
+            plt.bar(br[item], y_axis_total[item], width=barWidth, label='policy_' + str(item+1))
+        plt.xticks( [r+(len(y_axis_total)/2 - 0.5)*barWidth for r in range( len( x_axis ) )], range(len(x_axis)))
         plt.xlabel( config_dict['axis_x'], fontsize=18 )
         plt.ylabel( config_dict['axis_y'], fontsize=18 )
+        plt.grid()
         plt.legend(loc=config_dict['legend'])
         plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
         plt.show()
@@ -218,6 +220,22 @@ def get_marker(line_num):
     :return:
     """
     return ['.', 'x', 'o', 'v', '^', '<', '>']
+
+def get_color(line_num=0):
+    """
+    get color for each shape
+    :param line_num:
+    :return:
+    """
+    return ['limegreen', 'dodgerblue', 'lemonchiffon', 'sandybrown', 'lightcoral']
+
+def get_fill(line_num=0):
+    """
+    get filling
+    :param line_num:
+    :return:
+    """
+    return ['/', '|' , '-' , '+' , 'x', 'o', 'O', '.', '*']
 
 def get_line_style(line_num):
     """
