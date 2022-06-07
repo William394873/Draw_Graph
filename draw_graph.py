@@ -4,7 +4,7 @@ import sys
 from os import walk
 from matplotlib_venn import venn2, venn3, venn3_circles
 import random
-
+import json
 
 def main():
     """
@@ -18,6 +18,8 @@ def main():
     file_path = get_file(data_path)
     if graph_option == 'line':
         draw_line_chart(file_path, data_path, config_dict, graph_type)
+    elif graph_option == 'draw_line_cov_id':
+        draw_line_cov_id(file_path, data_path, config_dict, graph_type)
     elif graph_option == 'cdf':
         draw_cdf_chart( file_path, data_path, config_dict )
     elif graph_option == 'venn':
@@ -57,43 +59,22 @@ def draw_cdf_chart(file_path, data_path, config_dict):
         data_set = lines[0][1:-1].split(", ")
         axis_x = [float(i) for i in data_set]
         axis_x.sort()
-        axis_y = [(i+1)/len(axis_x)*100 for i in range(len(axis_x))]
-        # axis_x.append(600)
-        # axis_y.append(axis_y[-1])
+        axis_y = [i/500*100 for i in range(len(axis_x))]
+        axis_y = [(i+1)/(len(axis_x)+34)*100 for i in range(len(axis_x))]
+        axis_x.append(600)
+        axis_y.append(axis_y[-1])
         plt.plot(axis_x,axis_y,label=file.split('.')[0], dashes=line_style[index])
-        plt.ylim( ymin=0, ymax = 100 )
+        plt.ylim( ymin=0 )
         plt.xlim( xmin=0)
+        plt.ylim( ymin=0, ymax = 100 )
+        plt.xlim( xmin=0, xmax = 600)
     # plt.title(config_dict['graph_name'])
-    plt.xlabel(config_dict['axis_x'], fontsize=16)
-    plt.ylabel(config_dict['axis_y'], fontsize=16)
+    plt.xlabel(config_dict['axis_x'], fontsize=18)
+    plt.ylabel(config_dict['axis_y'], fontsize=18)
     # plt.legend(loc=config_dict['legend'])
     plt.grid()
     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
     plt.show()
-
-# def draw_cdf_chart(file_path, data_path, config_dict):
-#     line_style = get_line_style(len(file_path))
-#     if len(file_path)==1:
-#         line_style = [(2,2)]
-#     for index, file in enumerate(file_path):
-#         with open(data_path + '/' + file) as f:
-#             lines = f.readlines()
-#         data_set = lines[0][1:-1].split(", ")
-#         axis_x = [float(i) for i in data_set]
-#         axis_x.sort()
-#         axis_y = [(i+1)/(len(axis_x)+34)*100 for i in range(len(axis_x))]
-#         axis_x.append(600)
-#         axis_y.append(axis_y[-1])
-#         plt.plot(axis_x,axis_y,label=file.split('.')[0], dashes=line_style[index])
-#         plt.ylim( ymin=0, ymax = 100 )
-#         plt.xlim( xmin=0, xmax = 600)
-#     # plt.title(config_dict['graph_name'])
-#     plt.xlabel(config_dict['axis_x'], fontsize=16)
-#     plt.ylabel(config_dict['axis_y'], fontsize=16)
-#     # plt.legend(loc=config_dict['legend'])
-#     plt.grid()
-#     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
-#     plt.show()
 
 
 def draw_line_chart(file_path, data_path, config_dict, graph_type):
@@ -104,8 +85,9 @@ def draw_line_chart(file_path, data_path, config_dict, graph_type):
     for index, file in enumerate(file_path):
         with open(data_path + '/' + file) as f:
             lines = f.readlines()
-        file_cat = file.split('_')[1]
-        push_to_dict(file_cat, file, file_dict)
+        if graph_type == 'code_cov':
+            file_cat = file.split('_')[1]
+            push_to_dict(file_cat, file, file_dict)
         axis_x = []
         axis_y = []
         based_value = float(lines[1].split(" ")[2].strip("\n"))
@@ -130,8 +112,43 @@ def draw_line_chart(file_path, data_path, config_dict, graph_type):
 
     # plt.title(config_dict['graph_name'])
     # plt.xlim( xmin=0)
-    plt.xlabel(config_dict['axis_x'], fontsize=16)
-    plt.ylabel(config_dict['axis_y'], fontsize=16)
+    plt.xlabel(config_dict['axis_x'], fontsize=18)
+    plt.ylabel(config_dict['axis_y'], fontsize=18)
+    plt.legend(loc=config_dict['legend'])
+    plt.grid()
+    plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )
+    plt.show()
+
+def draw_line_cov_id(file_path, data_path, config_dict, graph_type):
+    line_style = get_line_style(len(file_path))
+    marker_style = get_marker(len(file_path))
+    file_dict = {}
+    y_dict = []
+    # axis_x = 
+    for index, file in enumerate(file_path):
+        with open(data_path + '/' + file) as f:
+            axis_y = json.load(f)
+        y_dict.append(axis_y)
+        # axis_x = list(np.arange(len(axis_y)))
+        # file_cat = file.split('_')[1]
+        # axis_x = []
+        # axis_y = []
+        # based_value = float(lines[1].split(" ")[2].strip("\n"))
+        # for key, value in enumerate(lines[1:]):
+        #     datalist = value.split(" ")
+        #     axis_y.append(float(datalist[1]))
+        #     axis_x.append(float(datalist[2].strip("\n")) - based_value)
+        # plt.plot( range(len(axis_y)), axis_y, label=file.split('.')[0], dashes=line_style[index], marker = marker_style[index] if graph_type == 'code_cov' else None, markevery=10)
+        plt.bar( range(len(axis_y)), axis_y, label=file.split('.')[0])
+
+    # print((len(axis_x)))
+    # print((len(y_dict[1])))
+    # plt.fill_between( axis_x, y_dict[0], y_dict[1], where=y_dict[0] < y_dict[1], interpolate=True, color='dodgerblue', alpha=0.2, hatch="/",edgecolor='red' )
+
+    # plt.title(config_dict['graph_name'])
+    # plt.xlim( xmin=0)
+    plt.xlabel(config_dict['axis_x'], fontsize=18)
+    plt.ylabel(config_dict['axis_y'], fontsize=18)
     plt.legend(loc=config_dict['legend'])
     plt.grid()
     plt.savefig( "./result/" + config_dict['save_to'] + ".eps", format='eps' )

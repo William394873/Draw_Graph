@@ -41,7 +41,13 @@ save_to = code_cov_imp
 legend = best
 //code_cov_policy
 graph_name = Code Coverage with Time
-axis_x = Time (in second)
-axis_y = Percentage of covered code (%)
-save_to = code_cov
+axis_x = Percentage of code coverage increase (%)
+axis_y = Percentage of extensions(%)
+save_to = code_cov_policy
+legend = best
+//code_cov_contrast
+graph_name = Code Coverage
+axis_x = Extension ID
+axis_y = Code Coverage(%)
+save_to = code_cov_contrast
 legend = best
